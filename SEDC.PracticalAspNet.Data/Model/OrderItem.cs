@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SEDC.PracticalAspNet.Data.Model
 {
     public class OrderItem
     {
         [Key]
-        public int OrderItemId { get; set; }
+        public int Id { get; set; }
 
         public int OrderId { get; set; }
 
