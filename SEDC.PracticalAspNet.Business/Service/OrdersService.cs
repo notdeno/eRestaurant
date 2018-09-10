@@ -51,9 +51,38 @@ namespace SEDC.PracticalAspNet.Business.Service
             }
         }
 
-        public ServiceResult<DtoOrder> Edit(DtoOrder item)
+        public ServiceResult<DtoOrder> Edit(DtoOrder order)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //TODO: Implement validation
+                if (order == null) return new ServiceResult<DtoOrder>
+                {
+                    Success = false,
+                    Exception = new ArgumentNullException("order")
+                };
+                var dbOrder = Repository.DbContext.Orders.FirstOrDefault(x => x.Id == order.Id);
+                if (dbOrder == null) return new ServiceResult<DtoOrder>
+                {
+                    Success = false,
+                    ErrorMessage = "3404"
+                };
+                DbContext.SaveChanges();
+                return new ServiceResult<DtoOrder>
+                {
+                    Success = true,
+                    Item = new DtoOrder(dbOrder)
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult<DtoOrder>
+                {
+                    Success = false,
+                    Exception = ex,
+                    ErrorMessage = "an exception occurred"
+                };
+            }
         }
 
         public ServiceResult<DtoOrder> Load(DtoOrder item)
@@ -69,6 +98,11 @@ namespace SEDC.PracticalAspNet.Business.Service
         public ServiceResult<DtoOrder> Remove(DtoOrder item)
         {
             throw new NotImplementedException();
+        }
+
+        public ServiceResult<DtoOrderItem> AddOrderItem(DtoOrderItem)
+        {
+
         }
     }
 }
