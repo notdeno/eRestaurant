@@ -7,6 +7,7 @@ namespace SEDC.PractialAspNet.WebDemo.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        
         public ApplicationUser()
         {
         }

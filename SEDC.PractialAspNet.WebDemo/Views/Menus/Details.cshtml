@@ -1,0 +1,136 @@
+﻿@model SEDC.PracticalAspNet.Business.Model.DtoMenu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section styles{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+}
+
+<h2>Details</h2>
+<h4>DtoMenu</h4>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.RestaurantName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.RestaurantName)
+    </dd>
+
+</dl>
+<h2>categories:</h2>
+<div id="categories">
+    <h3 data-categoryId="1">Breakfast</h3>
+    <div>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <td>Item Id</td>
+                    <td>Name</td>
+                    <td>
+                        <button class="btn btn-success">+</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Coca Cola</td>
+                    <td>
+                        <button class="btn btn-danger">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Podravka supa</td>
+                    <td>
+                        <button class="btn btn-danger">-</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3 data-categoryid="45">deserts</h3>
+    <div>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <td>Item Id</td>
+                    <td>Name</td>
+                    <td>
+                        <button class="btn btn-success">+</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Coca Cola</td>
+                    <td>
+                        <button class="btn btn-danger">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Podravka supa</td>
+                    <td>
+                        <button class="btn btn-danger">-</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h3>soups</h3>
+    <div>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <td>Item Id</td>
+                    <td>Name</td>
+                    <td>
+                        <button class="btn btn-success">+</button>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Coca Cola</td>
+                    <td>
+                        <button class="btn btn-danger">-</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Podravka supa</td>
+                    <td>
+                        <button class="btn btn-danger">-</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+@section scripts{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script>
+        $("#categories").accordion({
+            active: 0,
+            activate: function (event, ui) {
+                console.log(ui.newHeader[0].getAttribute("data-categoryid"));
+            }
+        });
+    </script>
+}

@@ -210,6 +210,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,6 +278,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Menus\Index.cshtml" />
+    <Content Include="Views\Menus\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,6 +298,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Business\SEDC.PracticalAspNet.Business.csproj">
+      <Project>{388358a3-5cab-4ef0-8edd-315d96068b0d}</Project>
+      <Name>SEDC.PracticalAspNet.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SEDC.PracticalAspNet.Data\SEDC.PracticalAspNet.Data.csproj">
       <Project>{58281592-9a88-4c95-90db-1f9a36c51cda}</Project>
       <Name>SEDC.PracticalAspNet.Data</Name>
