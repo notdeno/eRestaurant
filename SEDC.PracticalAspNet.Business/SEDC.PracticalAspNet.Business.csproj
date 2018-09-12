@@ -63,12 +63,6 @@
     <Compile Include="Service\ServiceResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SEDC.PracticalAspNet.Data\SEDC.PracticalAspNet.Data.csproj">
-      <Project>{58281592-9a88-4c95-90db-1f9a36c51cda}</Project>
-      <Name>SEDC.PracticalAspNet.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
