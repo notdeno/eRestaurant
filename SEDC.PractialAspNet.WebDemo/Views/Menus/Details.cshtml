@@ -21,7 +21,12 @@
     </dd>
 
 </dl>
-<h2>categories:</h2>
+<h2>
+    categories:
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">
+        Add
+    </button>
+</h2>
 <div id="categories">
     <h3 data-categoryId="1">Breakfast</h3>
     <div>
@@ -120,11 +125,40 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 
+<!--create category modal goes here-->
+<div id="createCategoryModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--modal  header goes here-->
+                <h5 class="modal-title">Add Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--modal  body goes here-->
+                <form id="form_createCategory" action="/asdasdasd" method="post">
+                    <input type="hidden" name="menuId" value="@Model.Id" />
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" name="categoryName" class="form-control" placeholder="Category Name" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn_createCategory" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
+
     <script>
         $("#categories").accordion({
             active: 0,
@@ -132,5 +166,26 @@
                 console.log(ui.newHeader[0].getAttribute("data-categoryid"));
             }
         });
+        $('#myModal').on('shown.bs.modal', function () {
+            //$('#myInput').trigger('focus')
+        });
+        var frm = null;
+        var CategoryService = function () {
+            var createCategoryUrl = '/categories/create';
+            var btn_createCategory = $("#btn_createCategory");
+            form_createCategory = $("#form_createCategory");
+            btn_createCategory.on('click', function (event) {
+                var request = {
+                    menuId: form_createCategory["menuId"].value,
+                    categoryName: form_createCategory["categoryName"].value
+                };
+                $.post(createCategoryUrl, request, function (data) {
+                    console.log(data);
+                });
+            });
+        };
+        var categoryService = new CategoryService();
+
+
     </script>
 }
