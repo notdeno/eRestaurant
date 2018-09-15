@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using SEDC.PractialAspNet.WebDemo.Models;
+using SEDC.PracticalAspNet.Data;
 
 namespace SEDC.PractialAspNet.WebDemo
 {
@@ -15,7 +16,7 @@ namespace SEDC.PractialAspNet.WebDemo
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(RestaurantContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

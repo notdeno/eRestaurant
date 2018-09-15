@@ -169,11 +169,11 @@
         $('#myModal').on('shown.bs.modal', function () {
             //$('#myInput').trigger('focus')
         });
-        var frm = null;
+        
         var CategoryService = function () {
             var createCategoryUrl = '/categories/create';
             var btn_createCategory = $("#btn_createCategory");
-            form_createCategory = $("#form_createCategory");
+            form_createCategory = $("#form_createCategory")[0];
             btn_createCategory.on('click', function (event) {
                 var request = {
                     menuId: form_createCategory["menuId"].value,

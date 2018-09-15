@@ -1,4 +1,5 @@
 ﻿using SEDC.PracticalAspNet.Business.Model;
+using SEDC.PracticalAspNet.Data;
 using SEDC.PracticalAspNet.Data.Model;
 using SEDC.PracticalAspNet.Data.Repository;
 using System;
