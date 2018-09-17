@@ -18,6 +18,7 @@ namespace SEDC.PracticalAspNet.Business.Model
         {
             Id = menu.Id;
             TypeEnum = (MenuType)menu.TypeId;
+            MenuName = menu.MenuName;
         }
 
         public int Id { get; set; }

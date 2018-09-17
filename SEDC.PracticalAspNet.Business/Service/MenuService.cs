@@ -44,7 +44,40 @@ namespace SEDC.PracticalAspNet.Business.Service
 
         public ServiceResult<DtoMenu> Load(DtoMenu item)
         {
-            throw new NotImplementedException();
+            if ((item?.Id ?? 0) < 1)
+            {
+                return new ServiceResult<DtoMenu>
+                {
+                    Success = false,
+                    ErrorMessage = "id is a required parameter"
+                };
+            }
+
+            try
+            {
+                var dbItem = Repository.Get(item.Id);
+                if (dbItem == null)
+                    return new ServiceResult<DtoMenu>
+                    {
+                        Success = false,
+                        ErrorMessage = "menu not found"
+                    };
+
+                return new ServiceResult<DtoMenu>
+                {
+                    Success = true,
+                    Item = new DtoMenu(dbItem)
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult<DtoMenu>
+                {
+                    Success = false,
+                    Exception = ex,
+                    ErrorMessage = ex.Message
+                };
+            }
         }
 
         public ServiceResult<DtoMenu> LoadAll()

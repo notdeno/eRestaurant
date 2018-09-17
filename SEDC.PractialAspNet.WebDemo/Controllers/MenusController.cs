@@ -30,12 +30,10 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            return View(new DtoMenu
-            {
-                Id = id,
-                MenuName = "kikiriki bar",
-                TypeEnum = MenuType.Meals
-            });
+            var menuResult = _menuService.Load(new DtoMenu { Id = id });
+            if (menuResult.Success)
+                return View(menuResult.Item);
+            else return RedirectToAction("Index");
         }
 
         [HttpGet]
