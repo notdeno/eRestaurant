@@ -4,10 +4,6 @@
     ViewBag.Title = "Details";
 }
 
-@section styles{
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-}
-
 <h2>Details</h2>
 <h4>DtoMenu</h4>
 <hr />
@@ -27,97 +23,49 @@
         Add
     </button>
 </h2>
-<div id="categories">
-    <h3 data-categoryId="1">Breakfast</h3>
-    <div>
-        <table class="table table-responsive table-striped">
-            <thead>
-                <tr>
-                    <td>Item Id</td>
-                    <td>Name</td>
-                    <td>
-                        <button class="btn btn-success">+</button>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Coca Cola</td>
-                    <td>
-                        <button class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Podravka supa</td>
-                    <td>
-                        <button class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    Breakfast
+                </a>
+            </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <td>Item Id</td>
+                            <td>Name</td>
+                            <td>
+                                <button class="btn btn-success">+</button>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Coca Cola</td>
+                            <td>
+                                <button class="btn btn-danger">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Podravka supa</td>
+                            <td>
+                                <button class="btn btn-danger">-</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <h3 data-categoryid="45">deserts</h3>
-    <div>
-        <table class="table table-responsive table-striped">
-            <thead>
-                <tr>
-                    <td>Item Id</td>
-                    <td>Name</td>
-                    <td>
-                        <button class="btn btn-success">+</button>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Coca Cola</td>
-                    <td>
-                        <button class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Podravka supa</td>
-                    <td>
-                        <button class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <h3>soups</h3>
-    <div>
-        <table class="table table-responsive table-striped">
-            <thead>
-                <tr>
-                    <td>Item Id</td>
-                    <td>Name</td>
-                    <td>
-                        <button class="btn btn-success">+</button>
-                    </td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Coca Cola</td>
-                    <td>
-                        <button class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Podravka supa</td>
-                    <td>
-                        <button class="btn btn-danger">-</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
 </div>
 
 <p>
@@ -155,21 +103,13 @@
 </div>
 
 @section scripts{
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-            crossorigin="anonymous"></script>
 
     <script>
-        $("#categories").accordion({
-            active: 0,
-            activate: function (event, ui) {
-                console.log(ui.newHeader[0].getAttribute("data-categoryid"));
-            }
-        });
+
         $('#myModal').on('shown.bs.modal', function () {
             //$('#myInput').trigger('focus')
         });
-        
+
         var CategoryService = function () {
             var createCategoryUrl = '/categories/create';
             var btn_createCategory = $("#btn_createCategory");
