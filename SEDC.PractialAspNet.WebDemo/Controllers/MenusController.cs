@@ -1,4 +1,5 @@
 ﻿using SEDC.PracticalAspNet.Business.Model;
+using SEDC.PracticalAspNet.Business.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
 {
     public class MenusController : Controller
     {
+        MenuService _menuService;
+
         public MenusController()
         {
-
+            _menuService = new MenuService();
         }
 
         [HttpGet]
@@ -36,11 +39,26 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create() { }
+        public ActionResult Create() => View();
 
         [HttpPost]
-        public ActionResult Create(DtoMenu request)
+        public ActionResult Create(DtoMenu request, string nextView)
         {
+            ServiceResult<DtoMenu> result = _menuService.Add(request);
+            if (!result.Success)
+            {
+                ViewBag.ErrorMessage = result.ErrorMessage;
+                return View(request);
+            }
+            switch (nextView)
+            {
+                case "Create":
+                    return RedirectToAction("Create");
+                case "Index":
+                    return RedirectToAction("Index");
+                default:
+                    return RedirectToAction("Details", new { id = result.Item.Id });
+            }
         }
     }
 }

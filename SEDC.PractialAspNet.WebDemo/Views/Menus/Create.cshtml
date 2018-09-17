@@ -1,0 +1,51 @@
+﻿@model SEDC.PracticalAspNet.Business.Model.DtoMenu
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>DtoMenu</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MenuName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MenuName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MenuName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input data-nextview="Index" type="submit" value="Save and go to list" class="submit-btn btn btn-default" />
+                <input data-nextview="Details" type="submit" value="Save and preview" class="submit-btn btn btn-default" />
+                <input data-nextview="Edit" type="submit" value="Save and edit" class="submit-btn btn btn-default" />
+                <input data-nextview="Create" type="submit" value="Save and create another" class="submit-btn btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(".submit-btn").on('click', function (event) {
+            var nextView = event.target.getAttribute("data-nextview");
+            $("form")[0].action = $("form")[0].action + "?nextView=" + nextView;
+            console.log($("form")[0].action);
+            alert("preventing the form submition");
+        })
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -17,7 +17,7 @@ namespace SEDC.PracticalAspNet.Business.Service
                 var result = Repository.Create(new Menu()
                 {
                     TypeId = (byte)item.TypeEnum,
-                    RestaurantName = item.MenuName
+                    MenuName = item.MenuName
                 });
                 return new ServiceResult<DtoMenu>()
                 {

@@ -39,7 +39,7 @@ namespace SEDC.PracticalAspNet.Data.Repository
             var dbItem = DbContext.Menus.Single(m => 
                 m.Id == item.Id);
             dbItem.TypeId = item.TypeId;
-            dbItem.RestaurantName = item.RestaurantName;
+            dbItem.MenuName = item.MenuName;
             DbContext.Entry<Menu>(dbItem).State = 
                 System.Data.Entity.EntityState.Modified;
             DbContext.SaveChanges();
