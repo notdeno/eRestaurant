@@ -20,11 +20,32 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(new List<DtoMenu>() {
-                new DtoMenu { Id = 1,
-                    MenuName = "kikiriki bar",
-                    TypeEnum = MenuType.Meals }
-            });
+            var menusResult = _menuService.LoadAll();
+            return View(menusResult.ListItems);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            if (id < 1)
+                return RedirectToAction("Index");
+
+            var dbItem = _menuService.Load(new DtoMenu { Id = id });
+            if (dbItem == null)
+                return RedirectToAction("Index");
+            return View(dbItem);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, DtoMenu item)
+        {
+            if (id > 0 && (item?.Id ?? 0) > 0 && id == item.Id)
+            {
+                var dbItem = _menuService.Edit(item);
+                if (dbItem.Success)
+                    return RedirectToAction("Index");
+            }
+            return View(item);
         }
 
         [HttpGet]
