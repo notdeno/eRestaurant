@@ -21,6 +21,16 @@ namespace SEDC.PracticalAspNet.Business.Service
                     Success = false,
                     ErrorMessage = "2404"
                 };
+
+
+
+
+
+
+
+
+
+
             var newCategory = new Category
             {
                 Id = 0,

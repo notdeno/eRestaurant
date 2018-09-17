@@ -17,8 +17,8 @@ namespace SEDC.PracticalAspNet.Data.Model
 
         [Required]
         [MaxLength(200)]
-        public string RestaurantName { get; set; }
-
+        public string MenuName { get; set; }
+        
         public List<Category> ListCategories { get; set; }
     }
 }

@@ -21,6 +21,12 @@ namespace SEDC.PracticalAspNet.Data
         {
             return base.SaveChanges();
         }
+        //configuration manager can be used to avoid hardcoding the name of the ConnectionString
+        //public RestaurantContext()
+        //    : base($"name={ConfigurationManager.AppSettings["ConnectionStringName"]}")
+        //{
+        //}
+
         public RestaurantContext() 
             : base("name=RestaurantConnection")
         {

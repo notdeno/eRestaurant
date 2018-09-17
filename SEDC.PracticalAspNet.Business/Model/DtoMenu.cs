@@ -24,7 +24,7 @@ namespace SEDC.PracticalAspNet.Business.Model
 
         public MenuType TypeEnum { get; set; }
 
-        public string RestaurantName { get; set; }
+        public string MenuName { get; set; }
 
     }
 }

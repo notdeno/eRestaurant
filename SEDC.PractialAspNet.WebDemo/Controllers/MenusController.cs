@@ -19,7 +19,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         {
             return View(new List<DtoMenu>() {
                 new DtoMenu { Id = 1,
-                    RestaurantName = "kikiriki bar",
+                    MenuName = "kikiriki bar",
                     TypeEnum = MenuType.Meals }
             });
         }
@@ -30,9 +30,17 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
             return View(new DtoMenu
             {
                 Id = id,
-                RestaurantName = "kikiriki bar",
+                MenuName = "kikiriki bar",
                 TypeEnum = MenuType.Meals
             });
+        }
+
+        [HttpGet]
+        public ActionResult Create() { }
+
+        [HttpPost]
+        public ActionResult Create(DtoMenu request)
+        {
         }
     }
 }
