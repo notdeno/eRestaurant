@@ -4,19 +4,8 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-<h4>DtoMenu</h4>
+<h2>@Model.MenuName</h2>
 <hr />
-<dl class="dl-horizontal">
-    <dt>
-        @Html.DisplayNameFor(model => model.MenuName)
-    </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.MenuName)
-    </dd>
-
-</dl>
 <h2>
     categories:
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">

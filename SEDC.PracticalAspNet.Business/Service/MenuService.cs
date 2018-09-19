@@ -16,7 +16,6 @@ namespace SEDC.PracticalAspNet.Business.Service
             {
                 var result = Repository.Create(new Menu()
                 {
-                    TypeId = (byte)item.TypeEnum,
                     MenuName = item.MenuName
                 });
                 return new ServiceResult<DtoMenu>()
@@ -39,7 +38,43 @@ namespace SEDC.PracticalAspNet.Business.Service
 
         public ServiceResult<DtoMenu> Edit(DtoMenu item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((item?.Id ?? 0) > 0)
+                {
+                    var dbMenu = Repository.Get(item.Id);
+                    if (dbMenu == null)
+                        return new ServiceResult<DtoMenu>
+                        {
+                            Success = false,
+                            ErrorMessage = "menu not found"
+                        };
+                    Repository.Update(new Menu
+                    {
+                        Id = item.Id,
+                        MenuName = item.MenuName
+                    });
+                    return new ServiceResult<DtoMenu>
+                    {
+                        Success = true,
+                        Item = new DtoMenu(dbMenu)
+                    };
+                }
+                return new ServiceResult<DtoMenu>
+                {
+                    Success = false,
+                    ErrorMessage = "id is required parameter"
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult<DtoMenu>()
+                {
+                    Success = false,
+                    Exception = ex,
+                    ErrorMessage = ex.Message
+                };
+            }
         }
 
         public ServiceResult<DtoMenu> Load(DtoMenu item)

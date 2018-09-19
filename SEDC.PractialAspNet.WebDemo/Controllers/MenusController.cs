@@ -30,10 +30,10 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
             if (id < 1)
                 return RedirectToAction("Index");
 
-            var dbItem = _menuService.Load(new DtoMenu { Id = id });
-            if (dbItem == null)
+            var serviceResult = _menuService.Load(new DtoMenu { Id = id });
+            if (serviceResult == null)
                 return RedirectToAction("Index");
-            return View(dbItem);
+            return View(serviceResult.Item);
         }
 
         [HttpPost]

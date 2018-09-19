@@ -24,7 +24,7 @@ namespace SEDC.PracticalAspNet.Data.Model
         [Required]
         public DateTime WhenCreated { get; set; }
 
-        public List<OrderItem> ListOrderItems { get; set; }
+        public virtual List<OrderItem> ListOrderItems { get; set; }
 
         public int? TotalQuantity => ListOrderItems?.Sum(loi => loi.Quantity);
 

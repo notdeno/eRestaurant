@@ -36,12 +36,10 @@ namespace SEDC.PracticalAspNet.Data.Repository
 
         public void Update(Menu item)
         {
-            var dbItem = DbContext.Menus.Single(m => 
+            var dbMenu = DbContext.Menus.FirstOrDefault(m => 
                 m.Id == item.Id);
-            dbItem.TypeId = item.TypeId;
-            dbItem.MenuName = item.MenuName;
-            DbContext.Entry<Menu>(dbItem).State = 
-                System.Data.Entity.EntityState.Modified;
+            
+            dbMenu.MenuName = item.MenuName;
             DbContext.SaveChanges();
         }
     }

@@ -13,12 +13,9 @@ namespace SEDC.PracticalAspNet.Data.Model
         public int Id { get; set; }
 
         [Required]
-        public byte TypeId { get; set; }
-
-        [Required]
         [MaxLength(200)]
         public string MenuName { get; set; }
         
-        public List<Category> ListCategories { get; set; }
+        public virtual List<Category> ListCategories { get; set; }
     }
 }

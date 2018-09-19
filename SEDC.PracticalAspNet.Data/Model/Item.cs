@@ -23,6 +23,7 @@ namespace SEDC.PracticalAspNet.Data.Model
 
         [Required]
         public bool Availability { get; set; }
+
         [Required]
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
