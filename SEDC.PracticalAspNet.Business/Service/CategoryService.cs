@@ -21,16 +21,7 @@ namespace SEDC.PracticalAspNet.Business.Service
                     Success = false,
                     ErrorMessage = "2404"
                 };
-
-
-
-
-
-
-
-
-
-
+            
             var newCategory = new Category
             {
                 Id = 0,
@@ -40,6 +31,7 @@ namespace SEDC.PracticalAspNet.Business.Service
             var result = Repository.Create(newCategory);
             return new ServiceResult<DtoCategory>()
             {
+                Success= true,
                 Item = new DtoCategory(result)
             };
         }
