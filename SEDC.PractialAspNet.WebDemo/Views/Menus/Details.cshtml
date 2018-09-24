@@ -64,29 +64,67 @@
                 var _state = {};
 
                 this.renderAccordionBeginning = function () {
-
+                    return `<div class="panel-group" id="accordion">
+        <div class="panel panel-default">`;
                 }
 
-                this.renderCategory = function (category) {
-                    var result = "not implemented";
-
+                this.renderCategory = function (category, index) {
+                    var result =
+                        `<div class="panel-heading${index === 0 ? " active" : ""}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse${category.id}">
+                        ${category.categoryName}
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse${category.id}" class="panel-collapse collapse ${index === 0 ? " in" : ""}">
+                <div class="panel-body">
+                    <!--<table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <td>Item Id</td>
+                                <td>Name</td>
+                                <td>
+                                    <button class="btn btn-success">+</button>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Coca Cola</td>
+                                <td>
+                                    <button class="btn btn-danger">-</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Podravka supa</td>
+                                <td>
+                                    <button class="btn btn-danger">-</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>-->
+                </div>
+            </div>`;
                     //TODO: implement rendering the category
 
                     return result;
                 };
 
-                this.renderAccordionItems = function () {
+                this.renderAccordionCategories = function () {
                     var result = "";
                     if (_state && _state.categories && _state.categories.length) {
-                        $.each(_state.categories, function (category, index) {
-                            result += this.renderCategory(category);
+                        $.each(_state.categories, function (index, category) {
+                            result += _this.renderCategory(category, index);
                         });
                     }
                     return result;
                 };
 
                 this.renderAccordionEnding = function () {
-
+                    return `</div></div>`;
                 }
 
                 this.init = function () {
@@ -94,16 +132,24 @@
                     if (!_this.appDiv.length) {
                         throw new Error(`div with the given id "${_this.divId}" was not found`);
                     }
-                    _state.categories = [];
+                    //_state.categories = [];
+                    _state.categories = [
+                        { id: 1, categoryName: "drinks" },
+                        { id: 2, categoryName: "deserts" }
+                    ];
                     _this.render();
                 };
 
                 this.render = function () {
-                    var accordionBeginning = _this.renderAccordionBeginning();
-                    var accordionEnding = _this.renderAccordionEnding();
-                    var accordionItems = _this.renderAccordionItems();
+                    var result = "";
+                    result += _this.renderAccordionBeginning();
+                    result += _this.renderAccordionCategories();
+                    result += _this.renderAccordionEnding();
+                    _this.appDiv.html("");
+                    _this.appDiv.append(result);
                 };
             }
+
             var app = new App();
             app.divId = "app";
             app.init();
@@ -113,7 +159,7 @@
 
         $('#myModal').on('shown.bs.modal', function () {
             //$('#myInput').trigger('focus')
-        });    
+        });
 
 //var createCategoryUrl = '/categories/create';
 //var getCategoriesUrl = '/categories';
