@@ -65,49 +65,49 @@
 
                 this.renderAccordionBeginning = function () {
                     return `<div class="panel-group" id="accordion">
-        <div class="panel panel-default">`;
+                <div class="panel panel-default">`;
                 }
 
                 this.renderCategory = function (category, index) {
                     var result =
                         `<div class="panel-heading${index === 0 ? " active" : ""}">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse${category.id}">
-                        ${category.categoryName}
-                    </a>
-                </h4>
-            </div>
-            <div id="collapse${category.id}" class="panel-collapse collapse ${index === 0 ? " in" : ""}">
-                <div class="panel-body">
-                    <!--<table class="table table-responsive table-striped">
-                        <thead>
-                            <tr>
-                                <td>Item Id</td>
-                                <td>Name</td>
-                                <td>
-                                    <button class="btn btn-success">+</button>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Coca Cola</td>
-                                <td>
-                                    <button class="btn btn-danger">-</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Podravka supa</td>
-                                <td>
-                                    <button class="btn btn-danger">-</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>-->
-                </div>
-            </div>`;
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse${category.id}">
+                                ${category.categoryName}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse${category.id}" class="panel-collapse collapse ${index === 0 ? " in" : ""}">
+                        <div class="panel-body">
+                            <!--<table class="table table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>Item Id</td>
+                                        <td>Name</td>
+                                        <td>
+                                            <button class="btn btn-success">+</button>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Coca Cola</td>
+                                        <td>
+                                            <button class="btn btn-danger">-</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Podravka supa</td>
+                                        <td>
+                                            <button class="btn btn-danger">-</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>-->
+                        </div>
+                    </div>`;
                     //TODO: implement rendering the category
 
                     return result;
@@ -133,11 +133,9 @@
                         throw new Error(`div with the given id "${_this.divId}" was not found`);
                     }
                     //_state.categories = [];
-                    _state.categories = [
-                        { id: 1, categoryName: "drinks" },
-                        { id: 2, categoryName: "deserts" }
-                    ];
+                    _state.categories = [];
                     _this.render();
+                    _this.fetchCategories();
                 };
 
                 this.render = function () {
@@ -147,6 +145,10 @@
                     result += _this.renderAccordionEnding();
                     _this.appDiv.html("");
                     _this.appDiv.append(result);
+                };
+
+                this.fetchCategories = function() {
+                    //TODO: implement fetching categories
                 };
             }
 
