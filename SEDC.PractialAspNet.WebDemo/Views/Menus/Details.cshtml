@@ -54,120 +54,70 @@
 @section scripts{
 
     <script>
+        // A $( document ).ready() block.
+        $(document).ready(function () {
+
+            var App = function () {
+                var _this = this;
+                this.divId = "app";
+                this.appDiv = null;
+                var _state = {};
+
+                this.renderAccordionBeginning = function () {
+
+                }
+
+                this.renderCategory = function (category) {
+                    var result = "not implemented";
+
+                    //TODO: implement rendering the category
+
+                    return result;
+                };
+
+                this.renderAccordionItems = function () {
+                    var result = "";
+                    if (_state && _state.categories && _state.categories.length) {
+                        $.each(_state.categories, function (category, index) {
+                            result += this.renderCategory(category);
+                        });
+                    }
+                    return result;
+                };
+
+                this.renderAccordionEnding = function () {
+
+                }
+
+                this.init = function () {
+                    _this.appDiv = $("#" + _this.divId);
+                    if (!_this.appDiv.length) {
+                        throw new Error(`div with the given id "${_this.divId}" was not found`);
+                    }
+                    _state.categories = [];
+                    _this.render();
+                };
+
+                this.render = function () {
+                    var accordionBeginning = _this.renderAccordionBeginning();
+                    var accordionEnding = _this.renderAccordionEnding();
+                    var accordionItems = _this.renderAccordionItems();
+                };
+            }
+            var app = new App();
+            app.divId = "app";
+            app.init();
+        });
+
+
 
         $('#myModal').on('shown.bs.modal', function () {
             //$('#myInput').trigger('focus')
-        });
-        var State = function () {
-            this.categories = [];
-        }
+        });    
 
-        var App = function () {
-
-            this.state = new State();
-
-            var createCategoryUrl = '/categories/create';
-            var getCategoriesUrl = '/categories';
-            var btn_createCategory = $("#btn_createCategory");
-            form_createCategory = $("#form_createCategory")[0];
-
-            this.init = function () {
-                render();
-                this.getAllCategoriesForMenu();
-                btn_createCategory.on('click', function (event) {
-                    this.createCategory();
-                });
-            };
-
-            this.getAllCategoriesForMenu = function () {
-                $.post(getCategoriesUrl, request, function (data) {
-                    this.state.categories = data;
-                    render();
-                });
-            };
-
-            this.createCategory = function () {
-                var request = {
-                    menuId: form_createCategory["menuId"].value,
-                    categoryName: form_createCategory["categoryName"].value
-                };
-                $.post(createCategoryUrl, request, function (data) {
-                    state.categories.push(data);
-                    render();
-                });
-            };
-
-            this.deleteCategory = function () {
-                $.post(deleteCategoryUrl, request, function (data) {
-                    state.categories = state.categories.filter(x => x.Id != data.Id);
-                    render();
-                });
-            };
-
-            this.editCategory = function () {
-                //
-                $.post(createCategoryUrl, request, function (data) {
-                    var localCategories = this.state.categories.filter(x => x.Id == data.Id);
-
-                    if (localCategories && localCategories.length) {
-                        localCategories[0] = data;
-                    }
-                    render();
-                });
-            };
-
-            this.renderPanels = function () {
-                var result;
-                $.each(this.state.categories, function (index, item) {
-                    result += `<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse${item.Id}">
-                                                            ${item.CategoryName}
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapse${item.Id}" class="panel-collapse collapse in">
-                                                    <div class="panel-body">
-                                                        <table class="table table-responsive table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <td>Item Id</td>
-                                                                    <td>Name</td>
-                                                                    <td>
-                                                                        <button class="btn btn-success">+</button>
-                                                                    </td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-</div>`;
-                });
-                return result;
-            }
-
-            this.render()
-            {
-                var panels = '';
-                $.each
-                if (state.categories.length > 0) {
-                    panels = this.renderPanels()
-                }
-                $("#app").append(`
-           <div class="panel-group" id="accordion">
-                         ${panels}
-        </div>
-        `);
-            }
-        };
-
-
-        var app = new App();
-        app.init();
-
+//var createCategoryUrl = '/categories/create';
+//var getCategoriesUrl = '/categories';
+//var btn_createCategory = $("#btn_createCategory");
+//form_createCategory = $("#form_createCategory")[0];
     </script>
 }
