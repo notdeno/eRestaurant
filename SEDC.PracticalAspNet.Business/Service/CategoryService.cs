@@ -36,6 +36,22 @@ namespace SEDC.PracticalAspNet.Business.Service
             };
         }
 
+        public ServiceResult<DtoCategory> LoadForMenu(int menuId)
+        {
+            if (!Repository.DbContext.Menus.Any(x => x.Id == menuId))
+                return new ServiceResult<DtoCategory>
+                {
+                    Success = false,
+                    ErrorMessage = "menu not found"
+                };
+            var categories = Repository.DbContext.Categories.Where(x => x.MenuId == menuId).ToList();
+            return new ServiceResult<DtoCategory>
+            {
+                Success = true,
+                ListItems = categories.Select(x => new DtoCategory(x)).ToList()
+            };
+        }
+
         public ServiceResult<DtoCategory> Edit(DtoCategory item)
         {
             throw new NotImplementedException();
