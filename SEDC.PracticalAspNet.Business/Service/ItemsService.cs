@@ -42,6 +42,24 @@ namespace SEDC.PracticalAspNet.Business.Service
             };
         }
 
+        public ServiceResult<DtoItem> GetForCategory(int categoryId)
+        {
+            var exists = DbContext.Categories.Any(x => x.Id == categoryId);
+            if (!exists)
+            {
+                return new ServiceResult<DtoItem>
+                {
+                    ErrorMessage = "Category not found"
+                };
+            }
+            var dbItems = DbContext.Items.Where(x => x.CategoryId == categoryId).ToList();
+            return new ServiceResult<DtoItem>
+            {
+                Success = true,
+                ListItems = dbItems.Select(x => new DtoItem(x)).ToList()
+            };
+        }
+
         public ServiceResult<DtoItem> Edit(DtoItem item)
         {
             throw new NotImplementedException();

@@ -65,7 +65,9 @@
             var App = function () {
                 var _this = this;
                 var createCategoryUrl = '/categories/create';
-                var getCategoriesUrl = '/categories/getall';
+                var getCategoriesUrl = '/categories/getbymenu';
+                var getItemsUrl = '/items/getbycategory';
+                var createItemUrl = '/items/create';
                 var btn_createCategory = $("#btn_createCategory");
                 var form_createCategory = $("#form_createCategory")[0];
 
@@ -141,11 +143,24 @@
                         });
                         _this.render();
                         if (_state.categories && _state.categories.length) {
-                            //_this.loadItems(_state.categories[0]);
-                            _state.categories[0].items = [{ itemId: 123, name: "coca cola" }];
+                            _this.loadItems(_state.categories[0]);
+                            //_state.categories[0].items = [{ itemId: 123, name: "coca cola" }];
                         }
                     });
                 };
+
+                this.loadItems = function (category) {
+                    if (category && category.id) {
+                        $.get(getItemsUrl + "?categoryId=" + category.id, function (items) {
+                            _state.categories.filter(function (c) {
+                                if (c && c.id === category.id) {
+                                    console.log(items);
+                                    //c.items = data
+                                }   
+                            });
+                        });
+                    }
+                }
 
                 this.renderItemsTable = function (category) {
                     var result = `<table class="table table-responsive table-striped table-bordered">
@@ -187,8 +202,13 @@
                         categoryName: form_createCategory["categoryName"].value
                     };
                     $.post(createCategoryUrl, request, function (data) {
-                        _state.categories.push(data);
+                        _state.categories.push({
+                            id: data.Id,
+                            categoryName: data.CategoryName
+                        });
+                        
                         _this.render();
+
                     });
                 };
             }

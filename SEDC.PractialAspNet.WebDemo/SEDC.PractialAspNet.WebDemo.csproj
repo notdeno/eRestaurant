@@ -210,6 +210,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
     <Compile Include="Global.asax.cs">

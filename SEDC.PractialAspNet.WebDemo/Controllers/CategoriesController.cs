@@ -13,10 +13,9 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         }
 
         [HttpGet]
-        [ActionName("getall")]
+        [ActionName("getbymenu")]
         public ActionResult GetAllCategories(int menuId)
         {
-            //System.Threading.Thread.Sleep(3000);
             ServiceResult<DtoCategory> result = _categoriesService.LoadForMenu(menuId);
             if (result.Success)
                 return Json(result.ListItems, JsonRequestBehavior.AllowGet);
