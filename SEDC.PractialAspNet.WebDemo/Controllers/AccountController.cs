@@ -24,7 +24,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
-            UserManager = userManager;
+            this.UserManager = userManager;
             SignInManager = signInManager;
         }
 
