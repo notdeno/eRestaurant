@@ -5,7 +5,7 @@
 }
 
 <h2>@Model.MenuName</h2>
-<hr />
+<hr class="add-item" />
 <h2>
     categories:
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">
@@ -51,6 +51,35 @@
     </div>
 </div>
 
+<!--create item modal goes here-->
+<div id="createItemModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--modal  header goes here-->
+                <h5 class="modal-title">Add Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--modal  body goes here-->
+                <form id="form_createItem" method="post">
+                    <input type="hidden" name="categoryId" value="" id="selected-category-id" />
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" name="categoryName" class="form-control" placeholder="Category Name" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn_createItem" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts{
 
     <script>
@@ -70,6 +99,8 @@
                 var createItemUrl = '/items/create';
                 var btn_createCategory = $("#btn_createCategory");
                 var form_createCategory = $("#form_createCategory")[0];
+                var form_createItem = $("#form_createItem")[0];
+                var selectedCategoryInput = $("#selected-category-id")[0];
 
                 this.divId = "app";
                 this.appDiv = null;
@@ -119,6 +150,12 @@
                     if (!_this.appDiv.length) {
                         throw new Error(`div with the given id "${_this.divId}" was not found`);
                     }
+                    $("body").on("click", ".add-item", function (e) {
+                        console.log(e.target.getAttribute("data-category-id"));
+                        selectedCategoryInput.value = e.target.getAttribute("data-category-id");
+                        console.log(selectedCategoryInput);
+                    });
+
                     _state.categories = [];
                     _this.render();
                     _this.fetchCategories();
@@ -156,7 +193,7 @@
                                 if (c && c.id === category.id) {
                                     console.log(items);
                                     //c.items = data
-                                }   
+                                }
                             });
                         });
                     }
@@ -166,10 +203,10 @@
                     var result = `<table class="table table-responsive table-striped table-bordered">
                         <thead>
                             <tr>
-                                <td>Item Id</td>
+                                 <td>Item Id</td>
                                 <td>Name</td>
                                 <td>
-                                    <button class="btn btn-success">+</button>
+                                    <button data-category-id="${category.id}" class="btn btn-success add-item" data-toggle="modal" data-target="#createItemModal">+</button>
                                 </td>
                             </tr>
                         </thead>
@@ -206,9 +243,7 @@
                             id: data.Id,
                             categoryName: data.CategoryName
                         });
-                        
                         _this.render();
-
                     });
                 };
             }
@@ -219,12 +254,7 @@
             app.divId = "app";
             app.init();
         });
-
-
-
-        $('#myModal').on('shown.bs.modal', function () {
-            //$('#myInput').trigger('focus')
-        });
+        
 
 //var createCategoryUrl = '/categories/create';
 //var getCategoriesUrl = '/categories';
