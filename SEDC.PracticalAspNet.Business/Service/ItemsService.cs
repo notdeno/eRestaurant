@@ -16,7 +16,7 @@ namespace SEDC.PracticalAspNet.Business.Service
             var categoryExists = Repository
                 .DbContext
                 .Categories
-                .Any(c => c.Id == item.CatgoryId);
+                .Any(c => c.Id == item.CategoryId);
             if (!categoryExists)
             {
                 return new ServiceResult<DtoItem>
@@ -30,7 +30,7 @@ namespace SEDC.PracticalAspNet.Business.Service
                 Id = 0,
                 Name = item.Name,
                 Availability = item.Availability,
-                CategoryId = item.CatgoryId,
+                CategoryId = item.CategoryId,
                 Contents = item.Contents,
                 Description = item.Description,
                 Price = item.Price
@@ -38,6 +38,7 @@ namespace SEDC.PracticalAspNet.Business.Service
             var result = Repository.Create(newItem);
             return new ServiceResult<DtoItem>()
             {
+                Success = true,
                 Item = new DtoItem(result)
             };
         }
