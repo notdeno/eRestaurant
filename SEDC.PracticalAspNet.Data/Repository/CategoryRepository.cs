@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using SEDC.PracticalAspNet.Data.Contracts;
 using SEDC.PracticalAspNet.Data.Models;
 
 namespace SEDC.PracticalAspNet.Data.Repository
 {
-    public class CategoryRepository : BaseRepository, IRepository<Category>
+    public class CategoryRepository : BaseRepository, ICategoryRepository, IRepository<Category>, IDisposable
     {
         public Category Create(Category item)
         {

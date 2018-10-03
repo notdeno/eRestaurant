@@ -1,13 +1,11 @@
-﻿using SEDC.PracticalAspNet.Data.Models;
+﻿using SEDC.PracticalAspNet.Data.Contracts;
+using SEDC.PracticalAspNet.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEDC.PracticalAspNet.Data.Repository
 {
-    public class ItemsRepository : BaseRepository, IRepository<Item>
+    public class ItemsRepository : BaseRepository, IRepository<Item>, IItemsRepository
     {
         public Item Create(Item item)
         {

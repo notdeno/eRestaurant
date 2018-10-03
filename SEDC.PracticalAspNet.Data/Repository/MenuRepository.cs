@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using SEDC.PracticalAspNet.Data.Models;
+using SEDC.PracticalAspNet.Data.Contracts;
 
 namespace SEDC.PracticalAspNet.Data.Repository
 {
-    public class MenuRepository : 
-        BaseRepository, IRepository<Menu>
+    public class MenuRepository :
+        BaseRepository, IRepository<Menu>, IMenuRepository
     {
         public Menu Create(Menu item)
         {

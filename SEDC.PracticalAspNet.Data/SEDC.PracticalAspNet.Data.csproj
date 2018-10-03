@@ -59,7 +59,6 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
-    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ItemsRepository.cs" />
     <Compile Include="Repository\MenuRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
@@ -70,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Data.Contracts\SEDC.PracticalAspNet.Data.Contracts.csproj">
+      <Project>{F3E76CA8-04B5-4A64-8869-9E757D40A9C9}</Project>
+      <Name>SEDC.PracticalAspNet.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SEDC.PracticalAspNet.Data.Models\SEDC.PracticalAspNet.Data.Models.csproj">
       <Project>{311d3819-3910-42d1-b67e-1915d1eb3cd5}</Project>
       <Name>SEDC.PracticalAspNet.Data.Models</Name>
