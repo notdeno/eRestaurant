@@ -1,4 +1,5 @@
-﻿using SEDC.PracticalAspNet.Business.Service;
+﻿using SEDC.PracticalAspNet.Business.Contracts;
+using SEDC.PracticalAspNet.Business.Service;
 using SEDC.PracticalAspNet.Common.Contracts;
 using System.Web.Mvc;
 
@@ -6,10 +7,11 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
 {
     public class CategoriesController : Controller
     {
-        CategoryService _categoriesService;
-        public CategoriesController()
+        private readonly ICategoryService _categoriesService;
+
+        public CategoriesController(ICategoryService service)
         {
-            _categoriesService = new CategoryService();
+            _categoriesService = service;
         }
 
         [HttpGet]

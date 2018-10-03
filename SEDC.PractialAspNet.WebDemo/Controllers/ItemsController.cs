@@ -1,4 +1,4 @@
-﻿using SEDC.PracticalAspNet.Business.Service;
+﻿using SEDC.PracticalAspNet.Business.Contracts;
 using SEDC.PracticalAspNet.Common.Contracts;
 using System.Web.Mvc;
 
@@ -6,11 +6,11 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly ItemsService _service;
+        private readonly IItemsService _service;
 
-        public ItemsController()
+        public ItemsController(IItemsService service)
         {
-            _service = new ItemsService();
+            _service = service;
         }
 
         [HttpGet]

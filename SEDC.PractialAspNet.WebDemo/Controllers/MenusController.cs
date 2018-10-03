@@ -1,4 +1,4 @@
-﻿using SEDC.PracticalAspNet.Business.Service;
+﻿using SEDC.PracticalAspNet.Business.Contracts;
 using SEDC.PracticalAspNet.Common.Contracts;
 using System.Web.Mvc;
 
@@ -6,17 +6,17 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
 {
     public class MenusController : Controller
     {
-        MenuService _menuService;
+        IMenuService _service;
 
-        public MenusController()
+        public MenusController(IMenuService service)
         {
-            _menuService = new MenuService();
+            _service = service;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var menusResult = _menuService.LoadAll();
+            var menusResult = _service.LoadAll();
             return View(menusResult.ListItems);
         }
 
@@ -26,7 +26,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
             if (id < 1)
                 return RedirectToAction("Index");
 
-            var serviceResult = _menuService.Load(new DtoMenu { Id = id });
+            var serviceResult = _service.Load(new DtoMenu { Id = id });
             if (serviceResult == null)
                 return RedirectToAction("Index");
             return View(serviceResult.Item);
@@ -37,7 +37,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         {
             if (id > 0 && (item?.Id ?? 0) > 0 && id == item.Id)
             {
-                var dbItem = _menuService.Edit(item);
+                var dbItem = _service.Edit(item);
                 if (dbItem.Success)
                     return RedirectToAction("Index");
             }
@@ -47,7 +47,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var menuResult = _menuService.Load(new DtoMenu { Id = id });
+            var menuResult = _service.Load(new DtoMenu { Id = id });
             if (menuResult.Success)
                 return View(menuResult.Item);
             else return RedirectToAction("Index");
@@ -59,7 +59,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         [HttpPost]
         public ActionResult Create(DtoMenu request, string nextView)
         {
-            ServiceResult<DtoMenu> result = _menuService.Add(request);
+            ServiceResult<DtoMenu> result = _service.Add(request);
             if (!result.Success)
             {
                 ViewBag.ErrorMessage = result.ErrorMessage;

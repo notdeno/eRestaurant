@@ -22,7 +22,7 @@ namespace SEDC.PractialAspNet.WebDemo.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        private AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             this.UserManager = userManager;
             SignInManager = signInManager;
