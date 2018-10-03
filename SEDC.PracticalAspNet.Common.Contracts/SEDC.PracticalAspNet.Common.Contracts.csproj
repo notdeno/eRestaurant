@@ -48,6 +48,7 @@
     <Compile Include="MenuType.cs" />
     <Compile Include="OrderStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SEDC.PracticalAspNet.Data.Models\SEDC.PracticalAspNet.Data.Models.csproj">

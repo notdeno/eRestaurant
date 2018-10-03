@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SEDC.PracticalAspNet.Business.Contracts;
 using SEDC.PracticalAspNet.Common.Contracts;
 using SEDC.PracticalAspNet.Data.Models;
 using SEDC.PracticalAspNet.Data.Repository;
 
 namespace SEDC.PracticalAspNet.Business.Service
 {
-    public class MenuService : BaseService<MenuRepository>, IService<DtoMenu>
+    public class MenuService : BaseService<MenuRepository>, IMenuService, IService<DtoMenu>, IDisposable
     {
         public ServiceResult<DtoMenu> Add(DtoMenu item)
         {

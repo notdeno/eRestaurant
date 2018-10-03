@@ -1,4 +1,5 @@
-﻿using SEDC.PracticalAspNet.Common.Contracts;
+﻿using SEDC.PracticalAspNet.Business.Contracts;
+using SEDC.PracticalAspNet.Common.Contracts;
 using SEDC.PracticalAspNet.Data.Models;
 using SEDC.PracticalAspNet.Data.Repository;
 using System;
@@ -6,7 +7,7 @@ using System.Linq;
 
 namespace SEDC.PracticalAspNet.Business.Service
 {
-    public class OrdersService : BaseService<OrderRepository>, IService<DtoOrder>
+    public class OrdersService : BaseService<OrderRepository>, IOrdersService, IService<DtoOrder>, IDisposable
     {
         public ServiceResult<DtoOrder> Add(DtoOrder order)
         {
@@ -62,7 +63,7 @@ namespace SEDC.PracticalAspNet.Business.Service
                     Exception = new ArgumentNullException("order")
                 };
 
-                var dbOrder = Repository.DbContext.Orders.FirstOrDefault(x => x.Id == order.Id);
+                var dbOrder = DbContext.Orders.FirstOrDefault(x => x.Id == order.Id);
                 if (dbOrder == null) return new ServiceResult<DtoOrder>
                 {
                     Success = false,

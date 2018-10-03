@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>dd21baaf-bbab-41d8-93dd-5f1879551614</ProjectGuid>
+    <ProjectGuid>{DD21BAAF-BBAB-41D8-93DD-5F1879551614}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SEDC.PracticalAspNet.Business.Contracts</RootNamespace>
@@ -31,24 +31,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="IBaseService.cs" />
+    <Compile Include="ICategoryService.cs" />
+    <Compile Include="IItemsService.cs" />
+    <Compile Include="IMenuService.cs" />
+    <Compile Include="IOrdersService.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Common.Contracts\SEDC.PracticalAspNet.Common.Contracts.csproj">
+      <Project>{38CA1F7C-F1CD-4BC8-B258-319CE851C584}</Project>
+      <Name>SEDC.PracticalAspNet.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Data.Contracts\SEDC.PracticalAspNet.Data.Contracts.csproj">
+      <Project>{F3E76CA8-04B5-4A64-8869-9E757D40A9C9}</Project>
+      <Name>SEDC.PracticalAspNet.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Data.Models\SEDC.PracticalAspNet.Data.Models.csproj">
+      <Project>{311D3819-3910-42D1-B67E-1915D1EB3CD5}</Project>
+      <Name>SEDC.PracticalAspNet.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Data\SEDC.PracticalAspNet.Data.csproj">
+      <Project>{58281592-9A88-4C95-90DB-1F9A36C51CDA}</Project>
+      <Name>SEDC.PracticalAspNet.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

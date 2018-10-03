@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SEDC.PracticalAspNet.Common.Contracts;
+using System;
 
-namespace SEDC.PracticalAspNet.Business.Service
+namespace SEDC.PracticalAspNet.Business.Contracts
 {
-    public interface IService<T>
+    public interface IService<T> : IDisposable
     {
         ServiceResult<T> LoadAll();
 

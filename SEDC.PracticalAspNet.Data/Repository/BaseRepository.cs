@@ -1,25 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEDC.PracticalAspNet.Data.Repository
 {
     public class BaseRepository : IDisposable
     {
-        private RestaurantContext _dbContext;
-
-        public RestaurantContext DbContext => _dbContext;
+        protected RestaurantContext DbContext { get; private set; }
 
         public BaseRepository()
         {
-            _dbContext = new RestaurantContext();
+            DbContext = new RestaurantContext();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _dbContext?.Dispose();
+            DbContext?.Dispose();
         }
     }
 }

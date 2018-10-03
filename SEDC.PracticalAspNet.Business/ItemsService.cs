@@ -1,4 +1,5 @@
-﻿using SEDC.PracticalAspNet.Common.Contracts;
+﻿using SEDC.PracticalAspNet.Business.Contracts;
+using SEDC.PracticalAspNet.Common.Contracts;
 using SEDC.PracticalAspNet.Data.Models;
 using SEDC.PracticalAspNet.Data.Repository;
 using System;
@@ -6,12 +7,11 @@ using System.Linq;
 
 namespace SEDC.PracticalAspNet.Business.Service
 {
-    public class ItemsService : BaseService<ItemsRepository>, IService<DtoItem>, IItemsService
+    public class ItemsService : BaseService<ItemsRepository>, IItemsService, IService<DtoItem>, IDisposable
     {
         public ServiceResult<DtoItem> Add(DtoItem item)
         {
-            var categoryExists = Repository
-                .DbContext
+            var categoryExists = DbContext
                 .Categories
                 .Any(c => c.Id == item.CategoryId);
             if (!categoryExists)

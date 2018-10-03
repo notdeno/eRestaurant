@@ -54,16 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service\BaseService.cs" />
-    <Compile Include="Service\CategoryService.cs" />
-    <Compile Include="Service\IBaseService.cs" />
-    <Compile Include="Service\IItemsService.cs" />
-    <Compile Include="Service\IService.cs" />
-    <Compile Include="Service\ItemsService.cs" />
-    <Compile Include="Service\MenuService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="CategoryService.cs" />
+    <Compile Include="ItemsService.cs" />
+    <Compile Include="MenuService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\OrdersService.cs" />
-    <Compile Include="Service\ServiceResult.cs" />
+    <Compile Include="OrdersService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
