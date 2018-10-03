@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
-using SEDC.PracticalAspNet.Data.Model;
+using SEDC.PracticalAspNet.Data.Models;
 
 namespace SEDC.PracticalAspNet.Data.Repository
 {

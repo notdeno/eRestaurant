@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
-using Microsoft.AspNet.Identity;
+﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SEDC.PractialAspNet.WebDemo.Models;
-using SEDC.PracticalAspNet.Data.Model;
+using SEDC.PracticalAspNet.Data.Models;
 
 namespace SEDC.PracticalAspNet.Data
 {
@@ -27,7 +23,7 @@ namespace SEDC.PracticalAspNet.Data
         //{
         //}
 
-        public RestaurantContext() 
+        public RestaurantContext()
             : base("name=RestaurantConnection")
         {
         }

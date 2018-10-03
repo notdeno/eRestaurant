@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SEDC.PracticalAspNet.Business</RootNamespace>
     <AssemblyName>SEDC.PracticalAspNet.Business</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,14 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DtoCategory.cs" />
-    <Compile Include="Model\DtoItem.cs" />
-    <Compile Include="Model\DtoMenu.cs" />
-    <Compile Include="Model\DtoOrder.cs" />
-    <Compile Include="Model\MenuType.cs" />
-    <Compile Include="Model\OrderStatus.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\IBaseService.cs" />
+    <Compile Include="Service\IItemsService.cs" />
     <Compile Include="Service\IService.cs" />
     <Compile Include="Service\ItemsService.cs" />
     <Compile Include="Service\MenuService.cs" />
@@ -73,6 +70,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Business.Contracts\SEDC.PracticalAspNet.Business.Contracts.csproj">
+      <Project>{dd21baaf-bbab-41d8-93dd-5f1879551614}</Project>
+      <Name>SEDC.PracticalAspNet.Business.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Common.Contracts\SEDC.PracticalAspNet.Common.Contracts.csproj">
+      <Project>{38ca1f7c-f1cd-4bc8-b258-319ce851c584}</Project>
+      <Name>SEDC.PracticalAspNet.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Data.Models\SEDC.PracticalAspNet.Data.Models.csproj">
+      <Project>{311d3819-3910-42d1-b67e-1915d1eb3cd5}</Project>
+      <Name>SEDC.PracticalAspNet.Data.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SEDC.PracticalAspNet.Data\SEDC.PracticalAspNet.Data.csproj">
       <Project>{58281592-9a88-4c95-90db-1f9a36c51cda}</Project>
       <Name>SEDC.PracticalAspNet.Data</Name>

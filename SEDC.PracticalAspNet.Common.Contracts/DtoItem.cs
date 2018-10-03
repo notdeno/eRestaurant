@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SEDC.PracticalAspNet.Data.Model;
+﻿using SEDC.PracticalAspNet.Data.Models;
 
-namespace SEDC.PracticalAspNet.Business.Model
+namespace SEDC.PracticalAspNet.Common.Contracts
 {
     public class DtoItem
     {

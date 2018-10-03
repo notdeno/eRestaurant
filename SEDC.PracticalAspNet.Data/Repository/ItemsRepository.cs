@@ -1,4 +1,4 @@
-﻿using SEDC.PracticalAspNet.Data.Model;
+﻿using SEDC.PracticalAspNet.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

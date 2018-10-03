@@ -1,9 +1,5 @@
-﻿using SEDC.PracticalAspNet.Business.Model;
-using SEDC.PracticalAspNet.Business.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SEDC.PracticalAspNet.Business.Service;
+using SEDC.PracticalAspNet.Common.Contracts;
 using System.Web.Mvc;
 
 namespace SEDC.PractialAspNet.WebDemo.Controllers

@@ -1,4 +1,4 @@
-﻿namespace SEDC.PracticalAspNet.Business.Model
+﻿namespace SEDC.PracticalAspNet.Common.Contracts
 {
     public enum MenuType : byte
     {

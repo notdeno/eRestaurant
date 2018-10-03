@@ -1,7 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using SEDC.PractialAspNet.WebDemo;
 
-[assembly: OwinStartupAttribute(typeof(SEDC.PractialAspNet.WebDemo.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 namespace SEDC.PractialAspNet.WebDemo
 {
     public partial class Startup

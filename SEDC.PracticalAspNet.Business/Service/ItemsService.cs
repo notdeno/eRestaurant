@@ -1,15 +1,12 @@
-﻿using SEDC.PracticalAspNet.Business.Model;
-using SEDC.PracticalAspNet.Data.Model;
+﻿using SEDC.PracticalAspNet.Common.Contracts;
+using SEDC.PracticalAspNet.Data.Models;
 using SEDC.PracticalAspNet.Data.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SEDC.PracticalAspNet.Business.Service
 {
-    public class ItemsService : BaseService<ItemsRepository>, IService<DtoItem>
+    public class ItemsService : BaseService<ItemsRepository>, IService<DtoItem>, IItemsService
     {
         public ServiceResult<DtoItem> Add(DtoItem item)
         {

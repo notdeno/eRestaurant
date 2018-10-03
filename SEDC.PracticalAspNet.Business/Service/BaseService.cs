@@ -4,11 +4,10 @@ using SEDC.PracticalAspNet.Data.Repository;
 
 namespace SEDC.PracticalAspNet.Business.Service
 {
-    public class BaseService<T> : IDisposable
-        where T : BaseRepository
+    public class BaseService<T> : IBaseService<T>, IDisposable where T : BaseRepository
     {
         private T _repository;
-
+        
         public T Repository => _repository;
         protected RestaurantContext DbContext => _repository.DbContext;
         public BaseService()

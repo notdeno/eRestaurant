@@ -306,6 +306,10 @@
       <Project>{388358a3-5cab-4ef0-8edd-315d96068b0d}</Project>
       <Name>SEDC.PracticalAspNet.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SEDC.PracticalAspNet.Common.Contracts\SEDC.PracticalAspNet.Common.Contracts.csproj">
+      <Project>{38CA1F7C-F1CD-4BC8-B258-319CE851C584}</Project>
+      <Name>SEDC.PracticalAspNet.Common.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SEDC.PracticalAspNet.Data\SEDC.PracticalAspNet.Data.csproj">
       <Project>{58281592-9a88-4c95-90db-1f9a36c51cda}</Project>
       <Name>SEDC.PracticalAspNet.Data</Name>

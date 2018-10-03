@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SEDC.PracticalAspNet.Data.Model
+namespace SEDC.PracticalAspNet.Data.Models
 {
     public class OrderItem
     {

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SEDC.PracticalAspNet.Data.Model;
+using SEDC.PracticalAspNet.Data.Models;
 
 namespace SEDC.PracticalAspNet.Data.Repository
 {
-    public class CategoryRepository : BaseRepository, IRepository<Model.Category>
+    public class CategoryRepository : BaseRepository, IRepository<Category>
     {
         public Category Create(Category item)
         {

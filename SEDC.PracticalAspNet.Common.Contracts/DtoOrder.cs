@@ -1,9 +1,8 @@
-﻿using SEDC.PracticalAspNet.Data.Model;
+﻿using SEDC.PracticalAspNet.Data.Models;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace SEDC.PracticalAspNet.Business.Model
+namespace SEDC.PracticalAspNet.Common.Contracts
 {
     public class DtoOrder
     {

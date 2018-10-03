@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using SEDC.PracticalAspNet.Business.Model;
-using SEDC.PracticalAspNet.Data.Model;
+using SEDC.PracticalAspNet.Common.Contracts;
+using SEDC.PracticalAspNet.Data.Models;
 using SEDC.PracticalAspNet.Data.Repository;
 
 namespace SEDC.PracticalAspNet.Business.Service
