@@ -3,6 +3,7 @@ using SEDC.PracticalAspNet.TestingServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -24,8 +25,10 @@ namespace SEDC.PracticalAspNet.IoCWeb
 
         private SedcContainer InitializeContainer()
         {
-            var container = new SedcContainer();
+            var controllersAssembly = Assembly.GetExecutingAssembly();
+            var container = new SedcContainer(controllersAssembly);
             container.Register<IItemsRepo, ItemsRepo>();
+
             return container;
         }
     }

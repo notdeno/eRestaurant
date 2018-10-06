@@ -2,15 +2,47 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Web.Mvc;
 
 namespace SEDC.PracticalAspNet.IoC
 {
     public class SedcContainer
     {
+        private readonly Assembly _controllersAssebly;
         private readonly ConcurrentDictionary<Type, Type> _registrations;
         private object sync = new object();
+        private ConcurrentBag<Type> controllerTypes = new ConcurrentBag<Type>();
 
-        public SedcContainer() => _registrations = new ConcurrentDictionary<Type, Type>();
+        public SedcContainer(Assembly controllersAssebly)
+        {
+            _controllersAssebly = controllersAssebly;
+            _registrations = new ConcurrentDictionary<Type, Type>();
+            GetControllerTypes().ForEach(t => controllerTypes.Add(t));
+            foreach (var controllerType in controllerTypes)
+            {
+                Register(controllerType);
+            }
+        }
+
+        public Controller GetController(string controllerName)
+        {
+            var controllerType = controllerTypes.FirstOrDefault(x => x.Name.Substring(0, x.Name.Length - 10) == controllerName);
+            if (controllerType == null)
+                throw new Exception($"no controller found with name \"{controllerName}\"");
+            var controllerInstance = GetInstance(controllerType);
+            return controllerInstance as Controller;
+        }
+
+        public void Register(Type implementationType)
+        {
+            Register(implementationType, implementationType);
+        }
+
+        public void Register(Type serviceType, Type implementationType)
+        {
+            while (!_registrations.TryAdd(serviceType, implementationType)) { }
+        }
 
         public void Register<TImplementation>()
         {
@@ -19,7 +51,7 @@ namespace SEDC.PracticalAspNet.IoC
 
         public void Register<TService, TImplementation>()
         {
-            while (!_registrations.TryAdd(typeof(TService), typeof(TImplementation))) { }
+            Register(typeof(TService), typeof(TImplementation));
         }
 
         public object GetInstance(Type serviceType)
@@ -42,10 +74,27 @@ namespace SEDC.PracticalAspNet.IoC
                         var newParameter = GetInstance(constructorParameter.ParameterType);
                         newParameters.Add(newParameter);
                     }
-                    return Activator.CreateInstance(implementationType, newParameters);
+                    return Activator.CreateInstance(implementationType, newParameters.ToArray());
                 }
             }
+            
             throw new Exception($"registration for type \"{serviceType.FullName}\"does not exist");
         }
+
+        private List<Type> GetControllerTypes()
+        {
+            var controllerTypes = new List<Type>();
+
+            _controllersAssebly.GetExportedTypes().ToList().ForEach(t =>
+            {
+                if (typeof(IController).IsAssignableFrom(t))
+                {
+                    controllerTypes.Add(t);
+                }
+            });
+
+            return controllerTypes;
+        }
     }
+
 }
